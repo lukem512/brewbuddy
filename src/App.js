@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import store from './store/store'
+
+import Hops from './components/Hops'
+
+// Log the initial state
+console.log(store.getState())
+
+// Subscribe to, and log, state changes
+store.subscribe(() => console.log(store.getState()))
+
+const App = () => (
+  <Provider store={store}>
+    <div className='App'>
+      <Hops />
     </div>
-  );
-}
+  </Provider>
+)
 
-export default App;
+export default App
