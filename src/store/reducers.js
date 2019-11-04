@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { ADD_HOP } from './actions'
+import { ADD_HOP, REMOVE_HOP } from './actions'
 
 export const initialState = {
   hops: [
@@ -27,7 +27,9 @@ export default combineReducers({
   hops: (state = initialState.hops, action) => {
     switch (action.type) {
       case ADD_HOP:
-        return [...state, action.data]
+        return [...state, action.hop]
+      case REMOVE_HOP:
+        return state.filter(hop => hop.name !== action.hop.name)
 
       default:
         return state

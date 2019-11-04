@@ -1,9 +1,17 @@
 // Hops
-export const ADD_HOP = 'ADD_HOP'
+export const ADD_HOP    = 'ADD_HOP'
+export const REMOVE_HOP = 'REMOVE_HOP'
 
-export const addHop = data => {
+export const addHop = hop => {
   return {
     type: ADD_HOP,
-    data
+    hop
+  }
+}
+
+export const removeHop = hop => {
+  return {
+    type: REMOVE_HOP,
+    hop
   }
 }

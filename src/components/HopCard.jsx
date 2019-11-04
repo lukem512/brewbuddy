@@ -1,7 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import { removeHop } from '../store/actions'
 import Card from './Card'
 
-const makeInfo = (hop) => {
+const makeInfo = (hop, props) => {
   var info = []
   if (hop.alpha) {
     info.push({
@@ -21,7 +24,12 @@ const makeInfo = (hop) => {
       value: 'Co-Humulone: ' + hop.humulone + '%'
     })
   }
-  return info.length === 0 ? undefined : info
+  info.push({
+    mouseOver: 'Remove this hop',
+    value: '×',
+    onClick: () => { props.removeHop(hop) }
+  })
+  return info
 }
 
 const HopCard = ({hop, ...rest}) => {
@@ -29,10 +37,17 @@ const HopCard = ({hop, ...rest}) => {
     <Card
       title={hop.name}
       content={hop.notes || ''}
-      info={makeInfo(hop)}
+      info={makeInfo(hop, rest)}
       {...rest}
     />
   )
 }
 
-export default HopCard
+const mapDispatchToProps = (dispatch) => ({
+  removeHop: (hop) => dispatch(removeHop(hop))
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(HopCard)

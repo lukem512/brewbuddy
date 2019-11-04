@@ -7,16 +7,20 @@ import * as Style from '../config/style'
 import CardInfo from './CardInfo'
 
 const mapInfo = (item, key) => {
+  console.log(key)
   switch (typeof item) {
     case 'string':
-      return <CardInfo key={key} value={item} />
+      return <CardInfo infoKey={key}>{item}</CardInfo>
     case 'object':
       return (
         <CardInfo
-          key={key}
+          infoKey={key}
           mouseOver={item.mouseOver}
           value={item.value}
-        />
+          onClick={item.onClick}
+        >
+          {item.value}
+        </CardInfo>
       )
     default:
       return (<span />)
