@@ -8,28 +8,32 @@ import * as Style from '../config/style'
 const MenuContainer = styled.div`
   height: 100%;
   min-height: 100vh;
-  min-width: 150px;
   flex-direction: column;
   padding: ${Style.PADDING};
-  background-color: ${Colour.PRIMARY_LIGHTEST};
-  border: 1px solid ${Colour.BORDER};
+`
+
+const MenuItemContainer = styled.div`
+  margin-top: ${Style.PADDING};
 `
 
 const Title = styled.div`
   color: ${Colour.INFO_DARKER};
-  font-weight: bold;
+  font-weight: 500;
   font-size: ${Style.TITLE_SIZE};
 `
 
 const MenuItem = styled(Link)`
-  margin-top: ${Style.PADDING}
-  font-weight: bold;
+  padding: ${Style.PADDING_SMALL};
+  padding-left: ${Style.PADDING};
   display: block;
   text-decoration: none;
   color: ${Colour.BLACK};
+  border-left: 2px solid ${Colour.INFO_DARKER};
 
   &:hover {
     color: ${Colour.INFO_DARKER};
+    background-color: ${Colour.PRIMARY_LIGHTEST};
+    border-left: 2px solid ${Colour.INFO_DARKEST};
   }
 `
 
@@ -42,10 +46,12 @@ const Menu = () => (
     <TitleContainer to='/'>
       <Title>BrewBuddy</Title>
     </TitleContainer>
-    <MenuItem to='/hops'>Hops</MenuItem>
-    <MenuItem to='/malts'>Malts</MenuItem>
-    <MenuItem to='/ingredients'>Ingredients</MenuItem>
-    <MenuItem to='/beers'>Beers</MenuItem>
+    <MenuItemContainer>
+      <MenuItem to='/hops'>Hops</MenuItem>
+      <MenuItem to='/malts'>Malts</MenuItem>
+      <MenuItem to='/ingredients'>Ingredients</MenuItem>
+      <MenuItem to='/beers'>Beers</MenuItem>
+    </MenuItemContainer>
   </MenuContainer>
 )
 

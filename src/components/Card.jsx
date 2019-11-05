@@ -28,7 +28,6 @@ const mapInfo = (item, key) => {
 }
 
 const Container = styled.div`
-  margin-top: ${Style.PADDING};
   margin-bottom: ${Style.PADDING};
   border: 1px solid ${Colour.BORDER};
   border-radius: ${Style.BORDER_RADIUS};
@@ -38,9 +37,9 @@ const Container = styled.div`
 
 const Title = styled.div`
   display: flex;
-  border-bottom: 1px solid ${Colour.BORDER};;
+  border-bottom: 1px solid ${Colour.BORDER};
   padding: ${Style.PADDING};
-  font-weight: bold;
+  font-weight: 500;
   background-color: ${Colour.PRIMARY_LIGHTEST};
 `
 
