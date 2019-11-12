@@ -1,3 +1,6 @@
+export const WHITE            = 'white'
+export const BLACK            = '#222'
+
 export const PRIMARY_LIGHTEST = '#fff4da'
 export const PRIMARY_LIGHTER  = '#ffe7b6'
 export const PRIMARY          = '#ffaa49'
@@ -23,7 +26,4 @@ export const DANGER_LIGHTEST  = '#ffe8d5'
 export const DANGER           = '#ff8463'
 export const DANGER_DARKEST   = ''
 
-export const BORDER           = '#f7f9fc'
-
-export const WHITE            = 'white'
-export const BLACK            = '#222'
+export const BORDER           = '#c2c8d2' //'#f7f9fc'

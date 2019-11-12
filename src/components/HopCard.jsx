@@ -36,10 +36,11 @@ const HopCard = ({hop, ...rest}) => {
   return (
     <Card
       title={hop.name}
-      content={hop.notes || ''}
       info={makeInfo(hop, rest)}
       {...rest}
-    />
+    >
+      {hop.notes || ''}
+    </Card>
   )
 }
 

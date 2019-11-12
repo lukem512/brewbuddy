@@ -5,9 +5,9 @@ import * as Colour from '../config/colours'
 import * as Style from '../config/style'
 
 import CardInfo from './CardInfo'
+import Flex from './Flex'
 
 const mapInfo = (item, key) => {
-  console.log(key)
   switch (typeof item) {
     case 'string':
       return <CardInfo infoKey={key}>{item}</CardInfo>
@@ -31,20 +31,19 @@ const Container = styled.div`
   margin-bottom: ${Style.PADDING};
   border: 1px solid ${Colour.BORDER};
   border-radius: ${Style.BORDER_RADIUS};
-  background-colour: ${Colour.WHITE};
+  background-color: ${Colour.WHITE};
   text-align: left;
+  width: 100%;
 `
 
-const Title = styled.div`
-  display: flex;
+const Title = styled(Flex)`
   border-bottom: 1px solid ${Colour.BORDER};
   padding: ${Style.PADDING};
   font-weight: 500;
   background-color: ${Colour.PRIMARY_LIGHTEST};
 `
 
-const Info = styled.div`
-  display: flex;
+const Info = styled(Flex)`
   flex-grow: 1;
   justify-content: flex-end;
 `
@@ -53,7 +52,7 @@ const Body = styled.div`
   padding: ${Style.PADDING};
 `
 
-const Card = ({ title, content, info, onClick, style }) => (
+const Card = ({ title, children, info, onClick, style }) => (
   <Container style={style} onClick={onClick}>
     <Title>
       {title}
@@ -62,7 +61,7 @@ const Card = ({ title, content, info, onClick, style }) => (
       </Info>}
     </Title>
     <Body>
-      {content}
+      {children}
     </Body>
   </Container>
 )

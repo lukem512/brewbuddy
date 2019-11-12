@@ -6,27 +6,31 @@ import * as Colour from './config/colours'
 import * as Style from './config/style'
 
 import Menu from './components/Menu'
-import Hops from './components/Hops'
 import Flex from './components/Flex'
 
-const Body = styled.div`
+import Hops from './views/Hops'
+import Beers from './views/Beers'
+import NewHop from './views/NewHop'
+
+const Body = styled(Flex  )`
   width: 90%;
-  display: flex;
   background-color: ${Colour.WHITE};
   padding: ${Style.PADDING}
 `
 
-const Container = styled.div`
-  display: flex;
-`
-
 const App = () => (
-  <Container>
+  <Flex>
     <Menu />
     <Body>
     <Switch>
       <Route path='/hops'>
         <Hops />
+      </Route>
+      <Route path='/beers'>
+        <Beers />
+      </Route>
+      <Route path='/new/hops'>
+        <NewHop />
       </Route>
 
       { /*  This is the default route. As
@@ -42,7 +46,7 @@ const App = () => (
       </Route>
     </Switch>
     </Body>
-  </Container>
+  </Flex>
 )
 
 export default App
