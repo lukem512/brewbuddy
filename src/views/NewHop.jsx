@@ -11,16 +11,8 @@ import Card from '../components/Card'
 import TextArea from '../components/TextArea'
 import Input from '../components/Input'
 import InputGroup from '../components/InputGroup'
-import Button, { DangerButton } from '../components/Button'
+import Button from '../components/Button'
 import ButtonGroup from '../components/ButtonGroup'
-
-const newHops = [
-  { name: 'East Kent Golding', alpha: 5.5, beta: 2.5, notes: 'One of the best-loved English hops. Primarily used for its aromatic compounds, East Kent Golding adds an earthy, honeyed taste and is often used in pale styles.' },
-  { name: 'Brewer\'s Gold', alpha: 8.5 },
-  { name: 'Cascade', alpha: 6.0, notes: 'A hugely popular, citrusy hop. Developed in Oregon in the 1950\'s, Cascade is now a pivotal hop in American brewing' },
-  { name: 'Pride of Kent', alpha: 9.0, beta: 7.0, humulone: 35 },
-  { name: 'Zenith', notes: 'A less-common hop with good storage properties. Used for bittering.' }
-]
 
 const Label = styled.label`
   &:after {
@@ -64,9 +56,10 @@ class NewHopComponent extends React.Component {
             value='Save'
           />
           <Link to='/hops'>
-            <DangerButton
+            <Button
               mouseOver='Return back to the hops page'
               value='Cancel'
+              danger
             />
           </Link>
         </ButtonGroup>

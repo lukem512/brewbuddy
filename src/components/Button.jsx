@@ -9,12 +9,13 @@ const ButtonDiv = styled.div`
   padding: ${Style.PADDING_SMALL} ${Style.PADDING};
   border-width: 2px;
   border-style: solid;
-  border-color: ${Colour.INFO_DARKER};
   border-radius: ${Style.BORDER_RADIUS};
   font-weight: bold;
-  color: ${Colour.INFO_DARKER};
   cursor: pointer;
   transition: all ${Style.TRANSITION};
+
+  border-color: ${Colour.INFO_DARKER};
+  color: ${Colour.INFO_DARKER};
 
   :hover {
     background-color: ${Colour.PRIMARY_LIGHTER};
@@ -31,13 +32,10 @@ const ButtonDiv = styled.div`
   `}
 `
 
-const Button = ({ onClick, value, mouseOver }) => (
-  <ButtonDiv className='btn' onClick={onClick} title={mouseOver}>
+const Button = ({ onClick, value, mouseOver, ...rest}) => (
+  <ButtonDiv className='btn' onClick={onClick} title={mouseOver} {...rest}>
     {value}
   </ButtonDiv>
 )
-
-export const DangerButton = ({value, ...props}) => <ButtonDiv danger {...props}>{value}</ButtonDiv>
-export const ExtraButton = ({value, ...props}) => <ButtonDiv extra {...props}>{value}</ButtonDiv>
 
 export default Button
