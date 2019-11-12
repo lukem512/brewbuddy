@@ -11,7 +11,7 @@ import Card from '../components/Card'
 import TextArea from '../components/TextArea'
 import Input from '../components/Input'
 import InputGroup from '../components/InputGroup'
-import Button from '../components/Button'
+import Button, { DangerButton } from '../components/Button'
 import ButtonGroup from '../components/ButtonGroup'
 
 const newHops = [
@@ -64,7 +64,7 @@ class NewHopComponent extends React.Component {
             value='Save'
           />
           <Link to='/hops'>
-            <Button
+            <DangerButton
               mouseOver='Return back to the hops page'
               value='Cancel'
             />

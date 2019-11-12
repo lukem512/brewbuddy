@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import * as Colour from '../config/colours'
 import * as Style from '../config/style'
@@ -7,17 +7,28 @@ import * as Style from '../config/style'
 const ButtonDiv = styled.div`
   width: fit-content;
   padding: ${Style.PADDING_SMALL} ${Style.PADDING};
-  border: 1px solid ${Colour.BORDER};
+  border-width: 2px;
+  border-style: solid;
+  border-color: ${Colour.INFO_DARKER};
   border-radius: ${Style.BORDER_RADIUS};
   font-weight: bold;
-  color: ${Colour.INFO_DARKER}
-  background-color: ${Colour.PRIMARY_LIGHTEST};
+  color: ${Colour.INFO_DARKER};
   cursor: pointer;
   transition: all ${Style.TRANSITION};
 
-  &:hover {
+  :hover {
     background-color: ${Colour.PRIMARY_LIGHTER};
   }
+
+  ${props => props.danger && css`
+    border-color: ${Colour.DANGER};
+    color: ${Colour.DANGER};
+  `}
+
+  ${props => props.extra && css`
+    border-color: ${Colour.BORDER};
+    color: ${Colour.BORDER};
+  `}
 `
 
 const Button = ({ onClick, value, mouseOver }) => (
@@ -25,5 +36,8 @@ const Button = ({ onClick, value, mouseOver }) => (
     {value}
   </ButtonDiv>
 )
+
+export const DangerButton = ({value, ...props}) => <ButtonDiv danger {...props}>{value}</ButtonDiv>
+export const ExtraButton = ({value, ...props}) => <ButtonDiv extra {...props}>{value}</ButtonDiv>
 
 export default Button

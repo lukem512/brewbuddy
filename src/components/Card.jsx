@@ -29,7 +29,7 @@ const mapInfo = (item, key) => {
 
 const Container = styled.div`
   margin-bottom: ${Style.PADDING};
-  border: 1px solid ${Colour.BORDER};
+  border: 2px solid ${Colour.BORDER};
   border-radius: ${Style.BORDER_RADIUS};
   background-color: ${Colour.WHITE};
   text-align: left;

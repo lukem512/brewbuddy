@@ -4,6 +4,7 @@ import * as Colour from '../config/colours'
 import * as Style from '../config/style'
 
 const Input = styled.input`
+  font-family: ${Style.FONT_FAMILY};
   width: 100%;
   padding: ${Style.PADDING_SMALL};
   border: 1px solid ${Colour.BORDER};

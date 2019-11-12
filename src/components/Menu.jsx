@@ -9,7 +9,8 @@ const MenuContainer = styled.div`
   height: 100%;
   min-height: 100vh;
   flex-direction: column;
-  padding: ${Style.PADDING};
+  padding: ${Style.PADDING_LARGE};
+  padding-right: ${Style.PADDING};
 `
 
 const MenuItemContainer = styled.div`

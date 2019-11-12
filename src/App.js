@@ -15,7 +15,7 @@ import NewHop from './views/NewHop'
 const Body = styled(Flex  )`
   width: 90%;
   background-color: ${Colour.WHITE};
-  padding: ${Style.PADDING}
+  padding: ${Style.PADDING_LARGE}
 `
 
 const App = () => (

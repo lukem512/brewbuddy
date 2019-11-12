@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import * as Colour from '../config/colours'
 import * as Style from '../config/style'
 
-const TextArea = styled.textarea`
+const Select = styled.select`
   font-family: ${Style.FONT_FAMILY};
   width: 100%;
   padding: ${Style.PADDING_SMALL};
@@ -20,4 +20,4 @@ const TextArea = styled.textarea`
   }
 `
 
-export default TextArea
+export default Select
