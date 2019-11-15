@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { removeHop } from '../store/actions'
 import Card from './Card'
 
+import * as Colour from '../config/colours'
+
 const makeInfo = (hop, props) => {
   var info = []
   if (hop.alpha) {
@@ -25,6 +27,8 @@ const makeInfo = (hop, props) => {
     })
   }
   info.push({
+    colour: Colour.DANGER_DARKER,
+    style: { fontSize: '1.5rem', lineHeight: '1rem' },
     mouseOver: 'Remove this hop',
     value: '×',
     onClick: () => { props.removeHop(hop) }

@@ -11,10 +11,28 @@ const MenuContainer = styled.div`
   flex-direction: column;
   padding: ${Style.PADDING_LARGE};
   padding-right: ${Style.PADDING};
+
+  @media (max-width: ${Style.MOBILE}) {
+    height: auto;
+    min-height: auto;
+    flex-direction: row;
+    padding: ${Style.PADDING} ${Style.PADDING_LARGE} 0;
+  }
+`
+
+const MenuContainerBorder = styled.div`
+  @media (max-width: ${Style.MOBILE}) {
+    padding: ${Style.PADDING_SMALL} ${Style.PADDING} 0;
+    border-bottom: 2px solid ${Colour.INFO_DARKER};
+  }
 `
 
 const MenuItemContainer = styled.div`
   margin-top: ${Style.PADDING};
+
+  @media (max-width: ${Style.MOBILE}) {
+    display: none;
+  }
 `
 
 const Title = styled.div`
@@ -44,15 +62,16 @@ const TitleContainer = styled(Link)`
 
 const Menu = () => (
   <MenuContainer>
-    <TitleContainer to='/'>
-      <Title>BrewBuddy</Title>
-    </TitleContainer>
-    <MenuItemContainer>
-      <MenuItem to='/hops'>Hops</MenuItem>
-      <MenuItem to='/malts'>Malts</MenuItem>
-      <MenuItem to='/ingredients'>Ingredients</MenuItem>
-      <MenuItem to='/beers'>Beers</MenuItem>
-    </MenuItemContainer>
+      <TitleContainer to='/'>
+        <Title>BrewBuddy</Title>
+      </TitleContainer>
+      <MenuContainerBorder />
+      <MenuItemContainer>
+        <MenuItem to='/hops'>Hops</MenuItem>
+        <MenuItem to='/malts'>Malts</MenuItem>
+        <MenuItem to='/ingredients'>Ingredients</MenuItem>
+        <MenuItem to='/beers'>Beers</MenuItem>
+      </MenuItemContainer>
   </MenuContainer>
 )
 

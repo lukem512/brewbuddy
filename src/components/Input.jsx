@@ -14,8 +14,8 @@ const Input = styled.input`
   transition: all ${Style.TRANSITION};
   font-size: 1em;
 
-  &:focus,
-  &:hover {
+  :focus,
+  :hover {
     background-color: ${Colour.PRIMARY_LIGHTEST};
   }
 `

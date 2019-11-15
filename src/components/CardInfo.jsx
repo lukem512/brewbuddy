@@ -15,7 +15,7 @@ const InfoSpan = styled.span`
     }
   }};
   margin-left: ${Style.PADDING};
-  color: ${Colour.INFO_DARKER};
+  color: ${props => props.colour || Colour.INFO_DARKER};
 `
 
 const CardInfo = ({ infoKey, mouseOver, children, ...rest }) => (

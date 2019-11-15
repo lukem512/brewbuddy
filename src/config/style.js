@@ -1,5 +1,7 @@
 export const FONT_FAMILY = '"Montserrat", "Arial", sans-serif'
 
+export const MOBILE = '768px'
+
 export const BORDER_RADIUS = '0.25rem'
 
 export const PADDING_LARGE = '2rem'

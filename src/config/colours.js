@@ -24,6 +24,8 @@ export const WARNING_DARKEST  = ''
 
 export const DANGER_LIGHTEST  = '#ffe8d5'
 export const DANGER           = '#ff8463'
-export const DANGER_DARKEST   = ''
+export const DANGER_DARK      = '#ff4b30'
+export const DANGER_DARKER    = '#db2c23'
+export const DANGER_DARKEST   = '#b7181c'
 
 export const BORDER           = '#c2c8d2' //'#f7f9fc'

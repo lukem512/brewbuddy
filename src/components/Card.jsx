@@ -18,8 +18,9 @@ const mapInfo = (item, key) => {
           mouseOver={item.mouseOver}
           value={item.value}
           onClick={item.onClick}
+          {...item}
         >
-          {item.value}
+          {item.value || ''}
         </CardInfo>
       )
     default:
@@ -41,11 +42,13 @@ const Title = styled(Flex)`
   padding: ${Style.PADDING};
   font-weight: 500;
   background-color: ${Colour.PRIMARY_LIGHTEST};
+  align-items: center;
 `
 
 const Info = styled(Flex)`
   flex-grow: 1;
   justify-content: flex-end;
+  align-items: center;
 `
 
 const Body = styled.div`

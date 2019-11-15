@@ -12,31 +12,32 @@ import Hops from './views/Hops'
 import Beers from './views/Beers'
 import NewHop from './views/NewHop'
 
-const Body = styled(Flex  )`
-  width: 90%;
+const Container = styled(Flex)`
+  flex-direction: row;
+
+  @media (max-width: ${Style.MOBILE}) {
+    flex-direction: column;
+  }
+`
+
+const Body = styled(Flex)`
+  max-width: 100vw;
   background-color: ${Colour.WHITE};
-  padding: ${Style.PADDING_LARGE}
+  padding: ${Style.PADDING_LARGE};
 `
 
 const App = () => (
-  <Flex>
+  <Container>
     <Menu />
     <Body>
     <Switch>
-      <Route path='/hops'>
-        <Hops />
-      </Route>
-      <Route path='/beers'>
-        <Beers />
-      </Route>
-      <Route path='/new/hops'>
-        <NewHop />
-      </Route>
+      <Route path='/' exact component={Hops} />
+      <Route path='/hops' component={Hops} />
+      <Route path='/beers' component={Beers} />
+      <Route path='/new/hops' component={NewHop} />
 
-      { /*  This is the default route. As
-            every URL begins with a '/', this
-            will always match. */ }
-      <Route path='/'>
+      { /*  This is the default route. */}
+      <Route>
         <Flex style={{
           width: '100%',
           justifyContent: 'center'
@@ -46,7 +47,7 @@ const App = () => (
       </Route>
     </Switch>
     </Body>
-  </Flex>
+  </Container>
 )
 
 export default App
