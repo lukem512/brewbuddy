@@ -14,30 +14,26 @@ import ButtonGroup from '../components/ButtonGroup'
 class NewHopComponent extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { hop: {} }
+    this.state = { valid: false, hop: {} }
   }
 
-  // validates the form input
-  // SUGGESTION: return an array of error inputs on failure
-  // See issue #3
-  validate() {
-    return !!(this.state.hop.name)
-  }
-
-  // Validates the form and adds the hop to the global state
   save() {
-    if (this.validate()) {
+    if (this.state.valid) {
       this.props.addHop(this.state.hop)
       this.setState({ redirect: '/hops' })
     }
   }
 
-  // Update the local state with form values
-  setNotes(event) {
+  resetState() {
+    this.props.resetState()
+  }
+
+  formChange({valid, values}) {
     this.setState({
+      valid,
       hop: {
         ...this.state.hop,
-        notes: event.target.value
+        ...values
       }
     })
   }
@@ -55,15 +51,12 @@ class NewHopComponent extends React.Component {
             added to your <Link to='/hops'>saved hops</Link> and you will be
             able to add it to your beer recipes.
           </p>
-          <Form formChange={({valid, values}) => { console.log('Got update', valid, values)}}>
+          <Form formChange={this.formChange.bind(this)}>
             <TextInput label='Name' name='name' required />
             <NumberInput label='Alpha acid (%)' name='alpha' />
             <NumberInput label='Beta acid (%)' name='beta' />
             <NumberInput label='Co-Humulone (%)' name='humulone' />
-            <TextArea
-              label='Notes'
-              onBlur={this.setNotes.bind(this)}
-            />
+            <TextArea label='Notes' name='notes' />
           </Form>
         </Card>
         <ButtonGroup>

@@ -17,19 +17,27 @@ class FormComponent extends React.Component {
 
   // Called whenever the state, or props, changes
   componentDidUpdate(prevProps, prevState) {
-    // Make sure the validity flag is set correctly
     let valid = this.isFormValid()
-    if (prevState.valid !== valid) {
+    // TODO: why doesn't this fire for first field?
+    if (prevState.valid === valid) {
+      if (!deepEqual(prevState, this.state)) {
+        if (this.props.formChange) {
+          let values = Object.keys(this.state.values).reduce((obj, field) => ({
+            ...obj,
+            [field]: this.state.values[field].value
+          }), {})
+          this.props.formChange({
+            valid: this.state.valid,
+            values
+          })
+        }
+      }
+    } else {
+      // Update local state with validity flag
+      // componentDidUpdate will then run again
       this.setState({
         valid
       })
-    } 
-
-    // Call the listener if anything has changed
-    if (!deepEqual(prevState, this.state)) {
-      if (this.props.formChange) {
-        this.props.formChange(this.state)
-      }
     }
   }
 

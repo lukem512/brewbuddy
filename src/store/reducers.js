@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux'
-import { ADD_HOP, REMOVE_HOP } from './actions'
+import * as Action from './actions'
 import initialState from './initialState'
 
-export default combineReducers({
+const appReducers = combineReducers({
   hops: (state = initialState.hops, action) => {
     switch (action.type) {
-      case ADD_HOP:
+      case Action.ADD_HOP:
         return [...state, action.hop]
-      case REMOVE_HOP:
+      case Action.REMOVE_HOP:
         return state.filter(hop => hop.name !== action.hop.name)
 
       default:
@@ -21,3 +21,12 @@ export default combineReducers({
     return state
   }
 })
+
+const rootReducer = (state, action) => {
+  if (action.type === Action.RESET_STATE) {
+    state = undefined
+  }
+  return appReducers(state, action)
+}
+
+export default rootReducer
