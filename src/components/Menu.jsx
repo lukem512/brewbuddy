@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import MobileOnly from 'react-mobile-only'
 
 import * as Colour from '../config/colours'
 import * as Style from '../config/style'
@@ -21,18 +22,24 @@ const MenuContainer = styled.div`
 `
 
 const MenuContainerBorder = styled.div`
-  @media (max-width: ${Style.MOBILE}) {
-    padding: ${Style.PADDING_SMALL} ${Style.PADDING} 0;
-    border-bottom: 2px solid ${Colour.INFO_DARKER};
-  }
+  padding: ${Style.PADDING_SMALL} ${Style.PADDING} 0;
+  border-bottom: 2px solid ${Colour.INFO_DARKER};
 `
 
 const MenuItemContainer = styled.div`
   margin-top: ${Style.PADDING};
+  flex-wrap: wrap;
 
   @media (max-width: ${Style.MOBILE}) {
-    display: none;
+    display: ${props => props.display ? 'flex' : 'none'};
+    flex-direction: row;
+    justify-content: center;
   }
+`
+
+const TitleBar = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 const Title = styled.div`
@@ -54,25 +61,92 @@ const MenuItem = styled(Link)`
     background-color: ${Colour.PRIMARY_LIGHTEST};
     border-left: 2px solid ${Colour.INFO_DARKEST};
   }
+
+  @media (max-width: ${Style.MOBILE}) {
+    border-left: none;
+    border-radius: ${Style.BORDER_RADIUS};
+    padding ${Style.PADDING_SMALL} ${Style.PADDING};
+
+    :hover {
+      border-left: none;
+    }
+  }
 `
 
 const TitleContainer = styled(Link)`
   text-decoration: none;
 `
 
-const Menu = () => (
-  <MenuContainer>
-      <TitleContainer to='/'>
-        <Title>BrewBuddy</Title>
-      </TitleContainer>
-      <MenuContainerBorder />
-      <MenuItemContainer>
-        <MenuItem to='/hops'>Hops</MenuItem>
-        <MenuItem to='/malts'>Malts</MenuItem>
-        <MenuItem to='/ingredients'>Ingredients</MenuItem>
-        <MenuItem to='/beers'>Beers</MenuItem>
-      </MenuItemContainer>
-  </MenuContainer>
-)
+// https://css-tricks.com/hamburger-menu-with-a-side-of-react-hooks-and-styled-components/
+const Hamburger = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 
-export default Menu
+  :focus {
+    outline: none;
+  }
+
+  div {
+    width: 1.5rem;
+    height: 0.2rem;
+    background: ${Colour.INFO_DARKER};
+    border-radius: 10px;
+    transition: all ${Style.TRANSITION};
+    position: relative;
+    transform-origin: 1px;
+  }
+
+  :hover {
+    div {
+      background: ${Colour.BLACK};
+    }
+  }
+`
+
+class MenuComponent extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { displayMenu: false }
+  }
+
+  toggleMenu(event) {
+    this.setState({ displayMenu: !this.state.displayMenu })
+  }
+
+  render() {
+    return (
+      <MenuContainer>
+        <TitleBar>
+          <TitleContainer to='/'>
+            <Title>BrewBuddy</Title>
+          </TitleContainer>
+          <MobileOnly>
+            <Hamburger onClick={this.toggleMenu.bind(this)}>
+              <div />
+              <div />
+              <div />
+            </Hamburger>
+          </MobileOnly>
+        </TitleBar>
+        <MobileOnly>
+          <MenuContainerBorder />
+        </MobileOnly>
+        <MenuItemContainer display={this.state.displayMenu}>
+          <MenuItem to='/hops'>Hops</MenuItem>
+          <MenuItem to='/malts'>Malts</MenuItem>
+          <MenuItem to='/ingredients'>Ingredients</MenuItem>
+          <MenuItem to='/beers'>Beers</MenuItem>
+        </MenuItemContainer>
+      </MenuContainer>
+    )
+  }
+}
+
+export default MenuComponent
