@@ -1,7 +1,11 @@
+import React from 'react'
 import styled from 'styled-components'
 
 import * as Colour from '../config/colours'
 import * as Style from '../config/style'
+
+import Label from './Label'
+import InputGroup from './InputGroup'
 
 const Input = styled.input`
   font-family: ${Style.FONT_FAMILY};
@@ -20,4 +24,39 @@ const Input = styled.input`
   }
 `
 
-export default Input
+class InputComponent extends React.Component {
+  render() {
+    const {label, required, ...rest} = this.props;
+    return (
+      <InputGroup>
+        {label && (<Label required={required}>{label}</Label>)}
+        <Input {...rest} />
+      </InputGroup>
+    )
+  }
+}
+
+export default InputComponent
+
+export const TextInput = (props) => (
+  <InputComponent
+    type='text'
+    {...props}
+  />
+)
+
+export const NumberInput = (props) => (
+  <InputComponent
+    type='number'
+    min={props.min || 0}
+    step={props.step || 0.1}
+    {...props}
+  />
+)
+
+export const DateInput = (props) => (
+  <InputComponent
+    type='date'
+    {...props}
+  />
+)

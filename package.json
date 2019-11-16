@@ -10,6 +10,7 @@
     "styled-components": "^4.4.1"
   },
   "dependencies": {
+    "deep-equal": "^1.1.1",
     "lodash.throttle": "^4.1.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",

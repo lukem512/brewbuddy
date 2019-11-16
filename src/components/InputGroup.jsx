@@ -9,4 +9,4 @@ const InputGroup = styled(Flex)`
   align-items: center;
 `
 
-export default InputGroup
+export default InputGroup 
