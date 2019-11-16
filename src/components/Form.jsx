@@ -23,10 +23,10 @@ class FormComponent extends React.Component {
       this.setState({
         valid
       })
-    }
+    } 
 
     // Call the listener if anything has changed
-    if (deepEqual(prevState, this.state)) {
+    if (!deepEqual(prevState, this.state)) {
       if (this.props.formChange) {
         this.props.formChange(this.state)
       }
