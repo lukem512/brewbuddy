@@ -31,7 +31,7 @@ const MenuItemContainer = styled.div`
   flex-wrap: wrap;
 
   @media (max-width: ${Style.MOBILE}) {
-    display: ${props => props.display ? 'flex' : 'none'};
+    display: ${props => props.show ? 'flex' : 'none'};
     flex-direction: row;
     justify-content: center;
   }
@@ -56,13 +56,13 @@ const MenuItem = styled(Link)`
   color: ${Colour.BLACK};
   border-left: 2px solid ${Colour.INFO_DARKER};
 
-  &:hover {
+  :hover {
     color: ${Colour.INFO_DARKER};
     background-color: ${Colour.PRIMARY_LIGHTEST};
     border-left: 2px solid ${Colour.INFO_DARKEST};
   }
 
-  @media (max-width: ${Style.MOBILE}) {
+  @media (max-width: ${Style.MOBILE}  ) {
     border-left: none;
     border-radius: ${Style.BORDER_RADIUS};
     padding ${Style.PADDING_SMALL} ${Style.PADDING};
@@ -113,11 +113,11 @@ const Hamburger = styled.div`
 class MenuComponent extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { displayMenu: false }
+    this.state = { showMenu: false }
   }
 
   toggleMenu(event) {
-    this.setState({ displayMenu: !this.state.displayMenu })
+    this.setState({ showMenu: !this.state.showMenu })
   }
 
   render() {
@@ -138,7 +138,7 @@ class MenuComponent extends React.Component {
         <MobileOnly>
           <MenuContainerBorder />
         </MobileOnly>
-        <MenuItemContainer display={this.state.displayMenu}>
+        <MenuItemContainer show={this.state.showMenu}>
           <MenuItem to='/hops'>Hops</MenuItem>
           <MenuItem to='/malts'>Malts</MenuItem>
           <MenuItem to='/ingredients'>Ingredients</MenuItem>
