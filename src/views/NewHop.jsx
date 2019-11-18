@@ -33,7 +33,7 @@ class NewHopComponent extends React.Component {
     return !(isNaN(floatVal) || floatVal < 0 || floatVal > 100)
   }
 
-  formChange({valid, values, failures}) {
+  formChange({valid, values}) {
     this.setState({
       valid,
       hop: {

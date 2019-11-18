@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import * as Colour from '../config/colours'
 import * as Style from '../config/style'
@@ -22,6 +22,10 @@ const Input = styled.input`
   :hover {
     background-color: ${Colour.PRIMARY_LIGHTEST};
   }
+
+  ${props => props.invalid && css`
+    border: 1px solid ${Colour.DANGER_DARKER};
+  `}
 `
 
 class InputComponent extends React.Component {
