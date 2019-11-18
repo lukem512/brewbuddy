@@ -12,15 +12,14 @@ class FormComponent extends React.Component {
     // The state includes an object of value objects,
     // each with a current value, `value`, and
     // a boolean validity flag, `valid`
-    this.state = { valid: false, values: {} }
+    this.state = { valid: undefined, values: {} }
   }
 
   // Called whenever the state, or props, changes
   componentDidUpdate(prevProps, prevState) {
     let valid = this.isFormValid()
-    // TODO: why doesn't this fire for first field?
-    if (prevState.valid === valid) {
-      if (!deepEqual(prevState, this.state)) {
+    if (this.state.valid === valid) {
+      if (!deepEqual(prevState, this.state)) { // I think this ignores undefined keys
         if (this.props.formChange) {
           // Create a values array from the internal state object
           let values = Object.keys(this.state.values).reduce((obj, field) => ({
@@ -33,14 +32,12 @@ class FormComponent extends React.Component {
             return this.state.values[field].valid ? arr : [...arr, field]
           }, [])
 
-          // Call the event handler, if one exists
-          if (this.props.formChange) {
-            this.props.formChange({
-              valid: this.state.valid,
-              values,
-              failures
-            })
-          }
+          // Call the event handler
+          this.props.formChange({
+            valid: this.state.valid,
+            values,
+            failures
+          })
         }
       }
     } else {
