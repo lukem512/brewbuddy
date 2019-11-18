@@ -3,11 +3,14 @@ import { connect } from 'react-redux'
 
 import { removeHop } from '../store/actions'
 import Card from './Card'
+import Button from './Button'
+import ButtonGroup from './ButtonGroup'
+import Modal from './Modal'
 
 import * as Colour from '../config/colours'
 
-const makeInfo = (hop, props) => {
-  var info = []
+const makeInfo = (props, onRemoveHopClick) => {
+  let { hop } = props, info = []
   if (hop.alpha) {
     info.push({
       mouseOver: 'Alpha acids composition (%); used for bittering',
@@ -31,21 +34,61 @@ const makeInfo = (hop, props) => {
     style: { fontSize: '1.5rem', lineHeight: '1rem' },
     mouseOver: 'Remove this hop',
     value: '×',
-    onClick: () => { props.removeHop(hop) }
+    onClick: () => onRemoveHopClick(hop)
   })
   return info
 }
 
-const HopCard = ({hop, ...rest}) => {
-  return (
-    <Card
-      title={hop.name}
-      info={makeInfo(hop, rest)}
-      {...rest}
-    >
-      {hop.notes || ''}
-    </Card>
-  )
+class HopCard extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { modalOpen: false }
+
+    this.openRemoveHopModal = this.openRemoveHopModal.bind(this)
+    this.closeRemoveHopModal = this.closeRemoveHopModal.bind(this)
+    this.removeHop = this.removeHop.bind(this)
+  }
+
+  openRemoveHopModal() {
+    this.setState({ removeHopModalOpen: true })
+  }
+
+  closeRemoveHopModal() {
+    this.setState({ removeHopModalOpen: false })
+  }
+
+  removeHop() {
+    this.closeRemoveHopModal()
+    this.props.removeHop(this.props.hop)
+  }
+
+  render() {
+    return (
+      <>
+        <Card
+          title={this.props.hop.name}
+          info={makeInfo(this.props, this.openRemoveHopModal)}
+          {...this.props}
+        >
+          {this.props.hop.notes || ''}
+        </Card>
+        <Modal isOpen={this.state.removeHopModalOpen} contentLabel='Remove Hop Confirmation'>
+          <p>Are you sure you want to remove this hop? You won't be able to undo this.</p>
+          <ButtonGroup>
+            <Button
+              danger
+              onClick={this.removeHop}
+              value='Remove'
+            />
+            <Button
+              onClick={this.closeRemoveHopModal}
+              value='Cancel'
+            />
+          </ButtonGroup>
+        </Modal>
+      </>
+    )
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
