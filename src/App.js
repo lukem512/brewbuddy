@@ -9,6 +9,7 @@ import Menu from './components/Menu'
 import Flex from './components/Flex'
 
 import Hops from './views/Hops'
+import Malts from './views/Malts'
 import Beers from './views/Beers'
 import NewHop from './views/NewHop'
 
@@ -24,6 +25,10 @@ const Body = styled(Flex)`
   max-width: 100vw;
   background-color: ${Colour.WHITE};
   padding: ${Style.PADDING_LARGE};
+
+  @media (min-width: ${Style.MOBILE}) {
+    width: 100%;
+  }
 `
 
 const App = () => (
@@ -33,6 +38,7 @@ const App = () => (
     <Switch>
       <Route path='/' exact component={Hops} />
       <Route path='/hops' component={Hops} />
+      <Route path='/malts' component={Malts} />
       <Route path='/beers' component={Beers} />
       <Route path='/new/hops' component={NewHop} />
 
