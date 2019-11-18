@@ -28,4 +28,6 @@ Modal.defaultStyles = {
   }
 }
 
+Modal.setAppElement('#root')
+
 export default Modal
