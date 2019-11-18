@@ -12,6 +12,7 @@ import Hops from './views/Hops'
 import Malts from './views/Malts'
 import Beers from './views/Beers'
 import NewHop from './views/NewHop'
+import NewMalt from './views/NewMalt'
 
 const Container = styled(Flex)`
   flex-direction: row;
@@ -40,7 +41,8 @@ const App = () => (
       <Route path='/hops' component={Hops} />
       <Route path='/malts' component={Malts} />
       <Route path='/beers' component={Beers} />
-      <Route path='/new/hops' component={NewHop} />
+      <Route path='/new/hop' component={NewHop} />
+      <Route path='/new/malt' component={NewMalt} />
 
       { /*  This is the default route. */}
       <Route>

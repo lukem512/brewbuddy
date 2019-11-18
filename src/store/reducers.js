@@ -15,7 +15,15 @@ const appReducers = combineReducers({
     }
   },
   malts: (state = initialState.malts, action) => {
-    return state
+    switch (action.type) {
+      case Action.ADD_MALT:
+        return [...state, action.malt]
+      case Action.REMOVE_MALT:
+        return state.filter(malt => malt.name !== action.malt.name)
+
+      default:
+        return state
+    }
   },
   beers: (state = initialState.beers, action) => {
     return state

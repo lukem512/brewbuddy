@@ -39,6 +39,8 @@ export default {
   malts: [
     {
       name: 'Maris Otter',
+      grain: 'Barley',
+      style: 'Pale',
       notes: 'A pale malt, often used as the base of a brew.'
     }
   ],

@@ -1,14 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
-
-const Container = styled.div`
-  width: 100%;
-`
 
 const Page = props => (
-  <Container>
+  <div style={{width: '100%'}}>
     {props.children}
-  </Container>
+  </div>
 )
 
 export default Page

@@ -3,22 +3,22 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import Page from '../components/Page'
-import HopCard from '../components/HopCard'
+import MaltCard from '../components/MaltCard'
 import Button from '../components/Button'
 import ButtonGroup from '../components/ButtonGroup'
 
-class HopsComponent extends React.Component {
+class MaltsComponent extends React.Component {
   render() {
     return (
-      <Page title='Hops'>
-        {this.props.items.map(hop => (
-          <HopCard key={hop.name} hop={hop} />
+      <Page title='Malts'>
+        {this.props.items.map(malt => (
+          <MaltCard key={malt.name} malt={malt} />
         ))}
         <ButtonGroup>
-          <Link to="/new/hop">
+          <Link to="/new/malt">
             <Button
-              mouseOver='Add a new hop'
-              value='Add Hop'
+              mouseOver='Add a new malt'
+              value='Add Malt'
             />
           </Link>
         </ButtonGroup>
@@ -28,10 +28,10 @@ class HopsComponent extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  items: state.hops
+  items: state.malts
 })
 
 export default connect(
   mapStateToProps,
   null
-)(HopsComponent)
+)(MaltsComponent)
