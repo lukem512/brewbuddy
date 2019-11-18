@@ -27,8 +27,18 @@ const ButtonDiv = styled.div`
   `}
 
   ${props => props.extra && css`
+    border-color: ${Colour.BLACK};
+    color: ${Colour.BLACK};
+  `}
+
+  ${props => props.disabled && css`
+    cursor: default;
     border-color: ${Colour.BORDER};
     color: ${Colour.BORDER};
+
+    :hover {
+      background-color: transparent;
+    }
   `}
 `
 

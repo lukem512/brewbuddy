@@ -25,11 +25,15 @@ class NewHopComponent extends React.Component {
   }
 
   percentageValidator(value){
+    if (!value || value === '') {
+      return true
+    }
+
     let floatVal = parseFloat(value)
     return !(isNaN(floatVal) || floatVal < 0 || floatVal > 100)
   }
 
-  formChange({valid, values}) {
+  formChange({valid, values, failures}) {
     this.setState({
       valid,
       hop: {
@@ -54,15 +58,16 @@ class NewHopComponent extends React.Component {
           </p>
           <Form formChange={this.formChange.bind(this)}>
             <TextInput label='Name' name='name' required />
+            <TextArea label='Notes' name='notes' required />
             <NumberInput label='Alpha acid (%)' name='alpha' validator={this.percentageValidator} />
             <NumberInput label='Beta acid (%)' name='beta' validator={this.percentageValidator} />
             <NumberInput label='Co-Humulone (%)' name='humulone' validator={this.percentageValidator} />
-            <TextArea label='Notes' name='notes' />
           </Form>
         </Card>
         <ButtonGroup>
           <Button
-            onClick={this.save.bind(this)}
+            disabled={!this.state.valid}
+            onClick={this.state.valid ? this.save.bind(this) : undefined}
             mouseOver='Add a new hop'
             value='Save'
           />
