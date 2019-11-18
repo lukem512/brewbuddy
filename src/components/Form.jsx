@@ -22,14 +22,25 @@ class FormComponent extends React.Component {
     if (prevState.valid === valid) {
       if (!deepEqual(prevState, this.state)) {
         if (this.props.formChange) {
+          // Create a values array from the internal state object
           let values = Object.keys(this.state.values).reduce((obj, field) => ({
             ...obj,
             [field]: this.state.values[field].value
           }), {})
-          this.props.formChange({
-            valid: this.state.valid,
-            values
-          })
+
+          // Fields that failed validation
+          let failures = Object.keys(this.state.values).reduce((arr, field) => {
+            return this.state.values[field].valid ? arr : [...arr, field]
+          }, [])
+
+          // Call the event handler, if one exists
+          if (this.props.formChange) {
+            this.props.formChange({
+              valid: this.state.valid,
+              values,
+              failures
+            })
+          }
         }
       }
     } else {
@@ -88,7 +99,7 @@ class FormComponent extends React.Component {
     React.Children.forEach(children, (child, i) => {
       if (child.props.required) {
         let fieldName = this.getFieldName(child, i)
-        requiredFieldsValid = values[fieldName] && values[fieldName].valid
+        requiredFieldsValid = values[fieldName] ? values[fieldName].valid : false
       }
     })
 
