@@ -18,8 +18,8 @@ const InfoSpan = styled.span`
   color: ${props => props.colour || Colour.INFO_DARKER};
 `
 
-const CardInfo = ({ infoKey, mouseOver, children, ...rest }) => (
-  <InfoSpan key={infoKey} title={mouseOver} {...rest}>
+const CardInfo = ({ mouseOver, children, ...rest }) => (
+  <InfoSpan title={mouseOver} {...rest}>
     {children}
   </InfoSpan>
 )

@@ -10,11 +10,11 @@ import Flex from './Flex'
 const mapInfo = (item, key) => {
   switch (typeof item) {
     case 'string':
-      return <CardInfo infoKey={key}>{item}</CardInfo>
+      return <CardInfo key={key}>{item}</CardInfo>
     case 'object':
       return (
         <CardInfo
-          infoKey={key}
+          key={key}
           mouseOver={item.mouseOver}
           value={item.value}
           onClick={item.onClick}
