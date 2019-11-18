@@ -24,8 +24,9 @@ class NewHopComponent extends React.Component {
     }
   }
 
-  resetState() {
-    this.props.resetState()
+  percentageValidator(value){
+    let floatVal = parseFloat(value)
+    return !(isNaN(floatVal) || floatVal < 0 || floatVal > 100)
   }
 
   formChange({valid, values}) {
@@ -53,9 +54,9 @@ class NewHopComponent extends React.Component {
           </p>
           <Form formChange={this.formChange.bind(this)}>
             <TextInput label='Name' name='name' required />
-            <NumberInput label='Alpha acid (%)' name='alpha' />
-            <NumberInput label='Beta acid (%)' name='beta' />
-            <NumberInput label='Co-Humulone (%)' name='humulone' />
+            <NumberInput label='Alpha acid (%)' name='alpha' validator={this.percentageValidator} />
+            <NumberInput label='Beta acid (%)' name='beta' validator={this.percentageValidator} />
+            <NumberInput label='Co-Humulone (%)' name='humulone' validator={this.percentageValidator} />
             <TextArea label='Notes' name='notes' />
           </Form>
         </Card>
