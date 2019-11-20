@@ -9,10 +9,22 @@ class FormComponent extends React.Component {
   constructor(props) {
     super(props)
 
+    // Populate initial values object with existing, or default
+    // values
+    let values = {}
+    React.Children.forEach(this.props.children, (child, i) => {
+      let fieldName = this.getFieldName(child, i)
+      let value = child.props.value || child.props.defaultValue
+      values[fieldName] = {
+        value,
+        valid: this.validator(child, value)
+      }
+    })
+
     // The state includes an object of value objects,
     // each with a current value, `value`, and
     // a boolean validity flag, `valid`
-    this.state = { valid: undefined, values: {} }
+    this.state = { valid: undefined, values }
   }
 
   // Called whenever the state, or props, changes
