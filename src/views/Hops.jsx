@@ -12,10 +12,10 @@ class HopsComponent extends React.Component {
     return (
       <Page title='Hops'>
         {this.props.items.map(hop => (
-          <HopCard key={hop.name} hop={hop} />
+          <HopCard key={hop.name} hop={hop} {...this.props} />
         ))}
         <ButtonGroup>
-          <Link to="/new/hop">
+          <Link to="/hop/new">
             <Button
               mouseOver='Add a new hop'
               value='Add Hop'

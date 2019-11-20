@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { removeMalt } from '../store/actions'
 
@@ -26,10 +27,9 @@ const makeInfo = (props, onRemoveMaltClick) => {
   }
   info.push({
     colour: Colour.DANGER_DARKER,
-    style: { fontSize: '1.5rem', lineHeight: '1rem' },
     mouseOver: 'Remove this malt',
-    value: '×',
-    onClick: () => onRemoveMaltClick(malt)
+    value: <FontAwesomeIcon icon="times" size="sm" />,
+    onClick: () => {onRemoveMaltClick(malt)}
   })
   return info
 }

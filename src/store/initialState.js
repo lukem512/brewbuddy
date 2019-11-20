@@ -44,5 +44,11 @@ export default {
       notes: 'A pale malt, often used as the base of a brew.'
     }
   ],
+  ingredients: [
+    {
+      name: 'Lactose',
+      notes: 'A non-fermentable sugar that adds sweetness and a distinct flavour. Used in milk stouts and some paler styles.'
+    }
+  ],
   beers: []
 }

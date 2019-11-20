@@ -15,7 +15,7 @@ class MaltsComponent extends React.Component {
           <MaltCard key={malt.name} malt={malt} />
         ))}
         <ButtonGroup>
-          <Link to="/new/malt">
+          <Link to="/malt/new">
             <Button
               mouseOver='Add a new malt'
               value='Add Malt'

@@ -43,6 +43,8 @@ const Title = styled(Flex)`
   font-weight: 500;
   background-color: ${Colour.PRIMARY_LIGHTEST};
   align-items: center;
+  border-top-left-radius: ${Style.BORDER_RADIUS};
+  border-top-right-radius: ${Style.BORDER_RADIUS};
 `
 
 const Info = styled(Flex)`

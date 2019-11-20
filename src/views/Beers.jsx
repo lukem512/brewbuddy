@@ -15,6 +15,13 @@ class BeersComponent extends React.Component {
             </option>
           ))}
         </Select>
+        <Select>
+          {this.props.malts.map(malt => (
+            <option value={malt.name} key={malt.name}>
+              {malt.name}
+            </option>
+          ))}
+        </Select>
       </Page>
     )
   }
