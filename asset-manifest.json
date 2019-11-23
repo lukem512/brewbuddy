@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/brewbuddy/static/js/main.fda27a0f.chunk.js",
+    "main.js.map": "/brewbuddy/static/js/main.fda27a0f.chunk.js.map",
+    "runtime-main.js": "/brewbuddy/static/js/runtime-main.4c0a0f2d.js",
+    "runtime-main.js.map": "/brewbuddy/static/js/runtime-main.4c0a0f2d.js.map",
+    "static/js/2.e88bbc5e.chunk.js": "/brewbuddy/static/js/2.e88bbc5e.chunk.js",
+    "static/js/2.e88bbc5e.chunk.js.map": "/brewbuddy/static/js/2.e88bbc5e.chunk.js.map",
+    "index.html": "/brewbuddy/index.html",
+    "precache-manifest.4bcfdd59246df6f52e613e5cb1cdfad9.js": "/brewbuddy/precache-manifest.4bcfdd59246df6f52e613e5cb1cdfad9.js",
+    "service-worker.js": "/brewbuddy/service-worker.js"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4c0a0f2d.js",
+    "static/js/2.e88bbc5e.chunk.js",
+    "static/js/main.fda27a0f.chunk.js"
+  ]
+}
