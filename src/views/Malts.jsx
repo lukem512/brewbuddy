@@ -12,7 +12,7 @@ class MaltsComponent extends React.Component {
     return (
       <Page title='Malts'>
         {this.props.items.map(malt => (
-          <MaltCard key={malt.name} malt={malt} />
+          <MaltCard key={malt.id} malt={malt} {...this.props} />
         ))}
         <ButtonGroup>
           <Link to="/malt/new">

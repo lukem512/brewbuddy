@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 
-import { addHop, removeHop } from '../store/actions'
+import { addHop, editHop, removeHop } from '../store/actions'
 
 import Page from '../components/Page'
 import Card from '../components/Card'
@@ -22,32 +22,38 @@ class NewHopComponent extends React.Component {
     this.state = {
       valid: false,
       editing: !!props.location.state,
-      removeHopModalOpen: false,
+      removeModalOpen: false,
       hop
     }
 
     // Bind event handler functions
-    this.openRemoveHopModal = this.openRemoveHopModal.bind(this)
-    this.closeRemoveHopModal = this.closeRemoveHopModal.bind(this)
-    this.removeHop = this.removeHop.bind(this)
-    this.saveHop = this.saveHop.bind(this)
+    this.openRemoveModal = this.openRemoveModal.bind(this)
+    this.closeRemoveModal = this.closeRemoveModal.bind(this)
+    this.remove = this.remove.bind(this)
+    this.edit = this.edit.bind(this)
+    this.save = this.save.bind(this)
   }
 
-  openRemoveHopModal() {
-    this.setState({ removeHopModalOpen: true })
+  openRemoveModal() {
+    this.setState({ removeModalOpen: true })
   }
 
-  closeRemoveHopModal() {
-    this.setState({ removeHopModalOpen: false })
+  closeRemoveModal() {
+    this.setState({ removeModalOpen: false })
   }
 
-  removeHop() {
-    this.closeRemoveHopModal()
+  remove() {
+    this.closeRemoveModal()
     this.props.removeHop(this.state.hop)
     this.setState({ redirect: '/hops' })
   }
 
-  saveHop() {
+  edit() {
+    this.props.editHop(this.state.hop)
+    this.setState({ redirect: '/hops' })
+  }
+
+  save() {
     if (this.state.valid) {
       if (this.state.editing) {
         this.props.editHop(this.state.hop)
@@ -111,13 +117,13 @@ class NewHopComponent extends React.Component {
           <Button
             success
             disabled={!this.state.valid}
-            onClick={this.state.valid ? this.saveHop : undefined}
+            onClick={this.state.valid ? this.save : this.edit}
             mouseOver={this.state.editing ? 'Save changes' : 'Add a new hop'}
             value='Save'
           />
           {this.state.editing && <Button
             danger
-            onClick={this.openRemoveHopModal}
+            onClick={this.openRemoveModal}
             mouseOver='Remove hop'
             value='Remove'
           />}
@@ -128,16 +134,16 @@ class NewHopComponent extends React.Component {
             />
           </Link>
         </ButtonGroup>
-        <Modal isOpen={this.state.removeHopModalOpen} contentLabel='Remove Hop Confirmation'>
+        <Modal isOpen={this.state.removeModalOpen} contentLabel='Remove Hop Confirmation'>
           <p>Are you sure you want to remove this hop? You won't be able to undo this.</p>
           <ButtonGroup>
             <Button
               danger
-              onClick={this.removeHop}
+              onClick={this.remove}
               value='Remove'
             />
             <Button
-              onClick={this.closeRemoveHopModal}
+              onClick={this.closeRemoveModal}
               value='Cancel'
             />
           </ButtonGroup>
@@ -149,7 +155,7 @@ class NewHopComponent extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   addHop: (hop) => dispatch(addHop(hop)),
-  editHop: (hop) => {},
+  editHop: (hop) => dispatch(editHop(hop)),
   removeHop: (hop) => dispatch(removeHop(hop))
 })
 

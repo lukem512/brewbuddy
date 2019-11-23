@@ -21,6 +21,7 @@ import Hops from './views/Hops'
 import Malt from './views/Malt'
 import Malts from './views/Malts'
 import Beers from './views/Beers'
+import Admin from './views/Admin'
 
 // Set up Font Awesome library
 library.add(faBeer, faArrowAltCircleRight, faPencilAlt, faTimes)
@@ -58,6 +59,9 @@ const App = () => (
       { /* Extraneous routes that explicitly create new objects */ }
       <Route path='/hop/new' component={Hop} />
       <Route path='/malt/new' component={Malt} />
+
+      { /* Development-only routes */ }
+      <Route path='/admin' component={Admin} />
 
       { /*  This is the default route. */}
       <Route>

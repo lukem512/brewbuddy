@@ -10,14 +10,14 @@ class BeersComponent extends React.Component {
       <Page title='Beers'>
         <Select>
           {this.props.hops.map(hop => (
-            <option value={hop.name} key={hop.name}>
+            <option value={hop.name} key={hop.id}>
               {hop.name}
             </option>
           ))}
         </Select>
         <Select>
           {this.props.malts.map(malt => (
-            <option value={malt.name} key={malt.name}>
+            <option value={malt.name} key={malt.id}>
               {malt.name}
             </option>
           ))}

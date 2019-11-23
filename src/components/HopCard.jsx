@@ -1,9 +1,9 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Card from './Card'
+import ClickableIcon from './ClickableIcon'
 
-const makeInfo = (props, onRemoveHopClick) => {
+const makeInfo = (props) => {
   let { hop } = props, info = []
   if (hop.alpha) {
     info.push({
@@ -25,7 +25,7 @@ const makeInfo = (props, onRemoveHopClick) => {
   }
   info.push({
     mouseOver: 'Edit this hop',
-    value: <FontAwesomeIcon icon="arrow-alt-circle-right" size="sm" />,
+    value: <ClickableIcon icon="arrow-alt-circle-right" size="sm" />,
     onClick: () => {
       props.history.push('/hop', { hop: props.hop })
     }
@@ -33,19 +33,15 @@ const makeInfo = (props, onRemoveHopClick) => {
   return info
 }
 
-class HopCard extends React.Component {
-  render() {
-    return (
-      <Card
-        title={this.props.hop.name}
-
-        info={makeInfo(this.props, this.openRemoveHopModal)}
-        {...this.props}
-      >
-        {this.props.hop.notes || ''}
-      </Card>
-    )
-  }
-}
+const HopCard = (props) => (
+  <Card
+    id={props.hop.id}
+    title={props.hop.name}
+    info={makeInfo(props)}
+    {...props}
+  >
+    {props.hop.notes || ''}
+  </Card>
+)
 
 export default HopCard

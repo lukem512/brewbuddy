@@ -1,10 +1,18 @@
 // Hops
 export const ADD_HOP    = 'ADD_HOP'
+export const EDIT_HOP   = 'EDIT_HOP'
 export const REMOVE_HOP = 'REMOVE_HOP'
 
 export const addHop = hop => {
   return {
     type: ADD_HOP,
+    hop
+  }
+}
+
+export const editHop = hop => {
+  return {
+    type: EDIT_HOP,
     hop
   }
 }
@@ -17,12 +25,20 @@ export const removeHop = hop => {
 }
 
 // Malts
-export const ADD_MALT = 'ADD_MALT'
+export const ADD_MALT    = 'ADD_MALT'
+export const EDIT_MALT   = 'EDIT_MALT'
 export const REMOVE_MALT = 'REMOVE_MALT'
 
 export const addMalt = malt => {
   return {
     type: ADD_MALT,
+    malt
+  }
+}
+
+export const editMalt = malt => {
+  return {
+    type: EDIT_MALT,
     malt
   }
 }

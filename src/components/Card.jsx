@@ -57,12 +57,12 @@ const Body = styled.div`
   padding: ${Style.PADDING};
 `
 
-const Card = ({ title, children, info, onClick, style }) => (
+const Card = ({ id, title, children, info, onClick, style }) => (
   <Container style={style} onClick={onClick}>
     <Title>
       {title}
       {info && <Info>
-        {info.map((item, i) => mapInfo(item, `${title}-info-${i}`))}
+        {info.map((item, i) => mapInfo(item, `${id || title}-info-${i}`))}
       </Info>}
     </Title>
     <Body>
