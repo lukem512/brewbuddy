@@ -4,8 +4,6 @@ import { Link, Redirect } from 'react-router-dom'
 
 import { addHop, removeHop } from '../store/actions'
 
-import * as Colour from '../config/colours'
-
 import Page from '../components/Page'
 import Card from '../components/Card'
 import Form from '../components/Form'
@@ -79,19 +77,6 @@ class NewHopComponent extends React.Component {
     })
   }
 
-  makeInfo() {
-    let info = []
-    if (this.state.editing) {
-      info.push({
-        colour: Colour.DANGER_DARKER,
-        mouseOver: 'Remove this hop',
-        value: 'Remove',
-        onClick: () => { this.openRemoveHopModal() }
-      })
-    }
-    return info
-  }
-
   render() {
     if (this.state.redirect) {
       return <Redirect push to={this.state.redirect} />
@@ -101,7 +86,6 @@ class NewHopComponent extends React.Component {
       <Page title={this.state.editing ? 'Edit Hop' : 'New Hop'}>
         <Card
           title={this.state.editing ? 'Make changes to a hop' : 'Add a new hop'}
-          info={this.makeInfo()}
         >
           {this.state.editing ? (
             <p>
@@ -125,16 +109,22 @@ class NewHopComponent extends React.Component {
         </Card>
         <ButtonGroup>
           <Button
+            success
             disabled={!this.state.valid}
             onClick={this.state.valid ? this.saveHop : undefined}
             mouseOver={this.state.editing ? 'Save changes' : 'Add a new hop'}
             value='Save'
           />
+          {this.state.editing && <Button
+            danger
+            onClick={this.openRemoveHopModal}
+            mouseOver='Remove hop'
+            value='Remove'
+          />}
           <Link to='/hops'>
             <Button
               mouseOver='Return back to the hops page'
               value='Cancel'
-              danger
             />
           </Link>
         </ButtonGroup>

@@ -21,6 +21,16 @@ const ButtonDiv = styled.div`
     background-color: ${Colour.PRIMARY_LIGHTER};
   }
 
+  ${props => props.primary && css`
+    border-color: ${Colour.PRIMARY};
+    color: ${Colour.PRIMARY};
+  `}
+
+  ${props => props.success && css`
+    border-color: ${Colour.SUCCESS_DARKER};
+    color: ${Colour.SUCCESS_DARKER};
+  `}
+
   ${props => props.danger && css`
     border-color: ${Colour.DANGER};
     color: ${Colour.DANGER};
@@ -33,8 +43,7 @@ const ButtonDiv = styled.div`
 
   ${props => props.disabled && css`
     cursor: default;
-    border-color: ${Colour.BORDER};
-    color: ${Colour.BORDER};
+    opacity: 0.4;
 
     :hover {
       background-color: transparent;

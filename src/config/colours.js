@@ -7,8 +7,12 @@ export const PRIMARY          = '#ffaa49'
 export const PRIMARY_DARKEST  = ''
 
 export const SUCCESS_LIGHTEST = '#dffddc'
+export const SUCCESS_LIGHTER  = '#bafcb9'
+export const SUCCESS_LIGHT    = '#94f69d'
 export const SUCCESS          = '#78ed8d'
-export const SUCCESS_DARKEST  = ''
+export const SUCCESS_DARK     = '#4de277'
+export const SUCCESS_DARKER   = '#38c26c'
+export const SUCCESS_DARKEST  = '#26a261'
 
 export const INFO_LIGHTEST    = '#d6f6ff' // 100
 export const INFO_LIGHTER     = '#ade9ff' // 200
